@@ -1,0 +1,219 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1280px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.link {
+    display: block;
+    margin: 0 auto;
+    color: crimson;
+    text-decoration: none;
+    padding: 10px;
+    border: 1px solid crimson;
+    transition: .4s;
+    text-align: center;
+
+    &:hover {
+        color: #fff;
+        background: crimson;
+        transition: .4s;
+    }
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px 0;
+    border: 1px solid crimson;
+    padding: 15px;
+}
+
+.list {
+    padding: 15px;
+    border: 1px solid crimson;
+    list-style-type: none;
+    display: grid;
+    gap: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+    li {
+        padding: 10px;
+        border: 1px solid crimson;
+    }
+}
+
+.title {
+    font-size: 52px;
+    font-weight: 600;
+    padding-top: 25px;
+    text-align: center;
+}
+
+.users {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.user {
+    padding: 10px;
+    border: 1px solid crimson;
+    position: relative;
+    background-image: url("../images/back.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: #ffffff;
+
+    & > div {
+        padding-bottom: 10px;
+        font-size: 20px;
+    }
+}
+
+.user-details {
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+    h1 {
+        padding-bottom: 20px;
+        margin: 0 auto;
+        width: fit-content;
+    }
+}
+
+.user__addition {
+
+    & > i {
+        display: block;
+        padding-bottom: 15px;
+    }
+
+    & > ul {
+        background-image: url("../images/back.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        color: #ffffff;
+        padding: 10px;
+        border: 1px solid crimson;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px 0;
+    }
+}
+
+.posts,
+.comments {
+    margin: 25px 0;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid crimson;
+    color: crimson;
+    background: transparent;
+    cursor: pointer;
+    transition: .4s;
+
+    &:hover {
+        color: #fff;
+        background: crimson;
+        transition: .4s;
+    }
+}
+
+.posts__list {
+    grid-template-columns: repeat(5, 1fr);
+
+    & > div {
+        text-align: center;
+        font-size: 25px;
+        padding-bottom: 3px;
+        font-weight: 600;
+    }
+
+    li {
+        background-image: url("../images/back.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        color: #ffffff;
+
+        display: grid;
+        grid-template-rows: 1fr;
+        gap: 10px 0;
+    }
+}
+
+.post {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-image: url("../images/back.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: #ffffff;
+
+    h1 {
+        text-transform: uppercase;
+        text-align: center;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    div {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 19px;
+    }
+}
+
+.comments__list {
+    grid-template-columns: repeat(4, 1fr);
+
+    li {background-image: url("../images/back.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        color: #ffffff;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px 0;
+
+        h4 {
+            font-size: 20px;
+            text-transform: capitalize;
+        }
+
+        div {
+            font-style: italic;
+        }
+    }
+}
+
+.link-last {
+    margin-bottom: 25px;
+}
+
+@media screen and (max-width: 769px) {
+    .list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
