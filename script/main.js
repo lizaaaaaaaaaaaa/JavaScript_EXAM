@@ -14,9 +14,9 @@ function indexCode() {
         .then(users => users.forEach(user => {
             const userBlock = createAndAppendElement('div', usersBlock, 'user');
 
-            userBlock.innerHTML = `<div><i>Ідентифікатор користувача: </i><span>${user.id}</span></div><div><i>Ім'я користувача: </i><span>${user.name}</span></div>`;
+            userBlock.innerHTML = `<div><i>id: </i><span>${user.id}</span></div><div><i>name: </i><span>${user.name}</span></div>`;
 
-            const userPageLink = createLink('Дізнатись більше', user.id, 'pages/user-details.html', userBlock, 'link user__link');
+            const userPageLink = createLink('Learn more', user.id, 'pages/user-details.html', userBlock, 'link user__link');
 
             userPageLink.onclick = function () {
                 sessionStorage.setItem('userId', userPageLink.id);
@@ -35,18 +35,17 @@ function userDetailsCode() {
             const postsBlock = document.getElementsByClassName('posts')[0];
             const btn = document.getElementsByClassName('btn')[0];
 
-            userBlock.innerHTML = `<h1>${user.name}</h1><div><i>Ідентифікатор користувача: </i><span>${user.id}</span></div><div><i>Ім'я користувача: </i><span>${user.name}</span></div><div><i>Нік користувача: </i><span>${user.username}</span></div><div><i>Електронна пошта користувача: </i><span>${user.email}</span></div><div><i>Номер телефону користувача: </i><span>${user.phone}</span></div><div><i>Сайт користувача: </i><span>${user.website}</span></div>`;
-
-            const userAddress = createAndAppendElement('div', userBlock, 'user__addition');
-            const address = user.address;
-            const geo = user.address.geo;
-            userAddress.innerHTML = `<i>Адреса: </i><ul><li><i>Місто: </i><span>${address.city}</span></li><li><i>Вулиця: </i><span>${address.street}</span></li><li><i>Номер: </i><span>${address.suite}</span></li><li><i>Поштовий індекс: </i><span>${address.zipcode}</span></li><li><i>Геолокація: </i><span>${geo.lat} широти, ${geo.lng} довготи</span></li></ul>`;
-
-
-            const userCompany = createAndAppendElement('div', userBlock, 'user__addition');
-            const company = user.company;
-            userCompany.innerHTML = `<i>Компанія: </i><ul><li><i>Назва: </i><span>${company.name}</span></li><li><i>Слоган: </i><span>${company.catchPhrase}</span></li><li><i>Business Strategy: </i><span>${company.bs}</span></li></ul>`;
-
+            for (const detail in user) {
+                console.log(typeof user[detail] === 'object')
+                if (typeof user[detail] === 'object') {
+                    const detailList = createAndAppendElement('div', userBlock, 'user__addition');
+                    detailList.innerHTML = `<i>${detail}: </i>`;
+                    decomposedList(user[detail], detailList);
+                } else {
+                    const detailBlock = createAndAppendElement('div', userBlock);
+                    detailBlock.innerHTML = `<i>${detail}: </i><span>${user[detail]}</span>`;
+                }
+            }
 
             const userPostsBtn = createShowBtn('Posts of current user', btn, 'button');
 
@@ -61,7 +60,7 @@ function userDetailsCode() {
                             const postItem = createAndAppendElement('li', postsList);
                             postItem.innerText = post.title;
 
-                            const postLink = createLink('Дізнатись більше', post.id, 'post-details.html', postItem, 'link post__link');
+                            const postLink = createLink('Learn more', post.id, 'post-details.html', postItem, 'link post__link');
                             postLink.onclick = function () {
                                 sessionStorage.setItem('postId', postLink.id);
                             }
@@ -81,9 +80,9 @@ function postDetailsCode() {
             const commentsBlock = document.getElementsByClassName('comments')[0];
             const btn = document.getElementsByClassName('btn')[0];
 
-            postBlock.innerHTML = `<h1>${post.title}</h1><div><i>Ідентифікатор поста: </i><span>${post.id}</span></div><div><i>Ідентифікатор користувача: </i><span>${post.userId}</span></div><p>${post.body}</p>`;
+            postBlock.innerHTML = `<h1>${post.title}</h1><div><i>id: </i><span>${post.id}</span></div><div><i>user Id: </i><span>${post.userId}</span></div><p>${post.body}</p>`;
 
-            const showCommentsBtn = createShowBtn('Показати коментарі', btn, 'button');
+            const showCommentsBtn = createShowBtn('Show comments', btn, 'button');
 
             showCommentsBtn.onclick = function () {
                 commentsBlock.innerText = '';
@@ -126,4 +125,20 @@ const createShowBtn = (text, appendTo, className) => {
     btn.innerText = text;
 
     return btn;
+}
+
+const decomposedList = (obj, appendTo) => {
+    const list = createAndAppendElement('ul', appendTo);
+    for (const objItem in obj) {
+        if (typeof obj[objItem] === 'object') {
+            const listItem = createAndAppendElement('li', list, 'list__addition-dec');
+            listItem.innerHTML = `<i>${objItem}: </i>`;
+            decomposedList(obj[objItem], listItem);
+        } else {
+            const listItem = createAndAppendElement('li', list);
+            listItem.innerHTML = `<i>${objItem}: </i><span>${obj[objItem]}</span>`;
+        }
+    }
+    // console.log(list);
+    return list;
 }

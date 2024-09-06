@@ -114,6 +114,17 @@
     }
 }
 
+.list__addition-dec {
+    ul {
+        padding-left: 20px;
+        list-style-type: none;
+
+        li {
+            padding-top: 10px;
+        }
+    }
+}
+
 .posts,
 .comments {
     margin: 25px 0;
@@ -187,7 +198,8 @@
 .comments__list {
     grid-template-columns: repeat(4, 1fr);
 
-    li {background-image: url("../images/back.jpg");
+    li {
+        background-image: url("../images/back.jpg");
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;
