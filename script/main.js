@@ -30,13 +30,11 @@ function userDetailsCode() {
     fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
         .then(response => response.json())
         .then(user => {
-            console.log(user)
             const userBlock = document.getElementsByClassName('user-details')[0];
             const postsBlock = document.getElementsByClassName('posts')[0];
             const btn = document.getElementsByClassName('btn')[0];
 
             for (const detail in user) {
-                console.log(typeof user[detail] === 'object')
                 if (typeof user[detail] === 'object') {
                     const detailList = createAndAppendElement('div', userBlock, 'user__addition');
                     detailList.innerHTML = `<i>${detail}: </i>`;
@@ -93,7 +91,7 @@ function postDetailsCode() {
                     .then(comments => {
                         comments.forEach(comment => {
                             const commentItem = createAndAppendElement('li', commentsList);
-                            commentItem.innerHTML = `<h4>${comment.name}</h4><div>${comment.email}</div><p>${comment.body}</p>`;
+                            commentItem.innerHTML = `<h4>${comment.name}</h4><div>${comment.id}</div><div>${comment.email}</div><p>${comment.body}</p>`;
                         });
                     })
             }
