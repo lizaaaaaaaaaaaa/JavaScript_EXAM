@@ -91,7 +91,7 @@ function postDetailsCode() {
                     .then(comments => {
                         comments.forEach(comment => {
                             const commentItem = createAndAppendElement('li', commentsList);
-                            commentItem.innerHTML = `<h4>${comment.name}</h4><div>${comment.id}</div><div>${comment.email}</div><p>${comment.body}</p>`;
+                            commentItem.innerHTML = `<h4>${comment.name}</h4><div><i>Comment Id: </i><span>${comment.id}</span></div><div><i>Post Id: </i><span>${comment.postId}</span></div><div>${comment.email}</div><p>${comment.body}</p>`;
                         });
                     })
             }
